@@ -4,18 +4,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Entities;
-import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
 import java.io.*;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static java.lang.System.in;
 
 
 public class GetPageText {
@@ -80,15 +73,15 @@ public class GetPageText {
         {
             ex.getMessage();
         }
-        removeRegexText(textFile);
+        removeText(textFile);
     }
 
-    private void removeRegexText(String textFile) throws IOException {
-        String regex = "«(.*?)@STGUtah";
+    private void removeText(String textFile) throws IOException {
+        String footer = "«(.*?)@STGUtah";
 
         String content;
         content = new String(Files.readAllBytes(Paths.get(textFile)));
-        content = content.replaceAll(regex,"");
+        content = content.replaceAll(footer,"");
 
         System.out.println("REMOVING TEXT...");
         try (Writer out = new BufferedWriter(new OutputStreamWriter(

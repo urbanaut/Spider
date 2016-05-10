@@ -2,9 +2,11 @@ package Spider;
 
 import com.swabunga.spell.SpellChecker;
 import com.swabunga.spell.TeXWordFinder;
+import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import com.swabunga.spell.event.SpellCheckEvent;
 import com.swabunga.spell.event.SpellCheckListener;
+import com.swabunga.spell.tokenizer.AbstractWordTokenizer;
 import com.swabunga.spell.tokenizer.StringWordTokenizer;
 import org.testng.annotations.Test;
 
@@ -26,8 +28,8 @@ public class RunSpellCheck implements SpellCheckListener {
     private ArrayList listOfMisspelledWords;
 
     @Test
-    public void runSpellCheck(String url, String text, String outFile) throws IOException {
-
+    public void runSpellCheck(String url, String text, String outFile) throws Exception
+    {
         createDictionary();
         spellChecker.addSpellCheckListener(this);
 
@@ -38,10 +40,11 @@ public class RunSpellCheck implements SpellCheckListener {
         printWordsInMisspelledList(url, outFile);
     }
 
-    private void createDictionary()
+    private void createDictionary() throws Exception
     {
         String DICTIONARY_FILE = "src\\resources\\dictionaries\\mainDict.txt";
         File dict = new File(DICTIONARY_FILE);
+
         try
         {
             spellChecker = new SpellChecker(new SpellDictionaryHashMap(dict));
