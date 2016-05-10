@@ -8,7 +8,7 @@ import Spider.Spider;
 public class STGSiteTest {
 	
 	@Test
-	public void STGSite()
+	public void STGSite() throws Exception
 	{
 		Spider spider = new Spider("http://www.stgconsulting.com");
 		
@@ -25,7 +25,7 @@ public class STGSiteTest {
 	}
 	
 	@Test
-	public void InvalidSite()
+	public void InvalidSite() throws Exception
 	{
 		Spider spider = new Spider("http://www.assdfsdfsdfdsdf.com/");
 		

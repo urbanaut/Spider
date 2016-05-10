@@ -37,8 +37,8 @@ public class Spider {
 	private FileWriter writer;
 	private final Date date = new Date() ;
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
-	private final String textFile = "src\\resources\\extract_" + dateFormat.format(date) + ".txt";
-	private final String spellFile = "src\\resources\\spelling_" + dateFormat.format(date) + ".txt";
+	private final String textFile = "src\\output\\extract_" + dateFormat.format(date) + ".txt";
+	private final String spellFile = "src\\output\\spelling_" + dateFormat.format(date) + ".txt";
 
 	
 	private Spider()
@@ -88,7 +88,7 @@ public class Spider {
 	{
 		if (whiteListURL == null || whiteListURL.isEmpty())
 			throw new InvalidParameterException("Whitelist URL must not be null or empty");
-		
+
 		whitelistedURLs.add(whiteListURL);
 	}
 	
@@ -123,7 +123,7 @@ public class Spider {
 	 * Orders the spider to 'walk' through the given site.
 	 * @return A String containing all of the errors found.
 	 */
-	public String walkSite()
+	public String walkSite() throws Exception
 	{
 		// Verify there isn't a problem with the starting URL
 		if (startURL == null || startURL.isEmpty())
@@ -190,6 +190,7 @@ public class Spider {
 					GetPageText extract = new GetPageText();
 					RunSpellCheck checker = new RunSpellCheck();
 					extract.extractText(visit.getDestination(),textFile);
+					extract.removeRegexText(textFile);
 					try {
 						checker.runSpellCheck(visit.getDestination(),textFile,spellFile);
 					} catch (IOException e) {

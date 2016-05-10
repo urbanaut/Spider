@@ -4,14 +4,23 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Entities;
+import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static java.lang.System.in;
 
 
 public class GetPageText {
 
-    public void extractText(String url, String textFile)
+    public void extractText(String url, String textFile) throws Exception
     {
         // Extract text from web page and save into file
         try
@@ -71,6 +80,25 @@ public class GetPageText {
         catch (IOException ex)
         {
             ex.getMessage();
+        }
+        removeRegexText(textFile);
+    }
+
+    public void removeRegexText(String textFile) throws IOException {
+        String regex = "«(.*?)@STGUtah";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(textFile);
+
+        String content;
+
+        content = new String(Files.readAllBytes(Paths.get(textFile)));
+        content = content.replaceAll(regex,"");
+
+        try (Writer out = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(textFile), "UTF-8")))
+        {
+            out.write(content);
+            out.close();
         }
     }
 }
