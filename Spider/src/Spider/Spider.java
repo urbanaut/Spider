@@ -121,6 +121,7 @@ public class Spider {
 	
 	/**
 	 * Orders the spider to 'walk' through the given site.
+	 *
 	 * @return A String containing all of the errors found.
 	 */
 	public String walkSite() throws Exception
@@ -225,9 +226,14 @@ public class Spider {
 
 		return errors;
 	}
-	
-	// Iterate through a set, and find if something partially matches the
-	// passed in string.
+
+	/**
+	 * Iterate through a set, and find if something partially matches the passed in string.
+	 *
+	 * @param set
+	 * @param toMatch
+     * @return boolean
+     */
 	private boolean hashSetPartialMatch(HashSet<String> set, String toMatch)
 	{
 		for(String str : set)
@@ -241,8 +247,13 @@ public class Spider {
 		
 		return false;
 	}
-	
-	// Perform a REST call to see if a link works
+
+	/**
+	 * Perform a REST call to see if a link works
+	 *
+	 * @param url
+	 * @return boolean
+     */
 	private boolean checkLinkBroken(String url)
 	{
 		HttpURLConnection connection;
@@ -263,7 +274,14 @@ public class Spider {
 		}		
 	}
 
-	// Scans the current driver page, extracting out URLs
+	/**
+	 * Scans the current driver page, extracting out URLs
+	 *
+	 * @param driver webdriver interpreter
+	 * @param toVisitURLs
+	 * @param tagName
+	 * @param targetAttribute
+     */
 	private void scanPage(WebDriver driver, Queue<Strand> toVisitURLs, String tagName, String targetAttribute)
 	{
 		List<WebElement> links = driver.findElements(By.tagName(tagName));
@@ -291,7 +309,10 @@ public class Spider {
 			}
 		}
 	}
-	
+
+	/**
+	 * Open file for writing
+	 */
 	private void SetupFile()
 	{
 		try
@@ -304,7 +325,12 @@ public class Spider {
 			e.printStackTrace();
 		}		
 	}
-	
+
+	/**
+	 * Create the date/time tag for log file name
+	 *
+	 * @return log text file
+     */
 	private String getFileName()
 	{
 		LocalDateTime date = LocalDateTime.now();
@@ -312,7 +338,13 @@ public class Spider {
 		
 		return "src\\output\\SpiderRun" + date.format(format) + ".txt";
 	}
-	
+
+	/**
+	 *
+	 * @param errorToReport
+	 * @param existingErrors
+     * @return errors
+     */
 	private String reportErrors(String errorToReport, String existingErrors)
 	{
 		if (writer != null)
@@ -329,7 +361,10 @@ public class Spider {
 		
 		return existingErrors + errorToReport;
 	}
-	
+
+	/**
+	 * Close the file writer
+	 */
 	private void CloseFile()
 	{
 		System.out.println("Commence closing");
