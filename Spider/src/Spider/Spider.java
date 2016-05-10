@@ -310,7 +310,7 @@ public class Spider {
 		LocalDateTime date = LocalDateTime.now();
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("'Date'ddMMMyyyy.'Time'H.m.s.S");	
 		
-		return "SpiderRun" + date.format(format) + ".txt";
+		return "src\\output\\SpiderRun" + date.format(format) + ".txt";
 	}
 	
 	private String reportErrors(String errorToReport, String existingErrors)

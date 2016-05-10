@@ -10,7 +10,8 @@ public class STGSiteTest {
 	@Test
 	public void STGSite() throws Exception
 	{
-		Spider spider = new Spider("http://www.stgconsulting.com");
+		String url = "http://www.stgconsulting.com";
+		Spider spider = new Spider(url);
 		
 		spider.addSiteURL("stgconsulting.com");
 		spider.addWhiteListURL("www.softwaretechnologygroup.com");

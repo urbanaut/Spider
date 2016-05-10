@@ -1,0 +1,88 @@
+
+URL: http://www.stgconsulting.com
+Misspelled Words: 
+a,s,w,
+
+URL: http://stgconsulting.com/
+Misspelled Words: 
+a,s,w,
+
+
+URL: http://stgconsulting.com/#menu
+Misspelled Words: 
+a,s,w,
+
+
+URL: http://stgconsulting.com/our-work/
+Misspelled Words: 
+a,s,w,
+
+
+URL: http://stgconsulting.com/ixd-showcase/
+Misspelled Words: 
+a,s,w,ixd,html,css,js,WordPress,JWorks,Caseflow,AngularJS,
+
+
+URL: http://stgconsulting.com/our-philosophy/
+Misspelled Words: 
+a,s,w,ixd,html,css,js,WordPress,JWorks,Caseflow,AngularJS,
+
+
+URL: http://stgconsulting.com/our-expertise/
+Misspelled Words: 
+a,s,w,ixd,html,css,js,WordPress,JWorks,Caseflow,AngularJS,doesn,t,Andriod,
+
+
+URL: http://stgconsulting.com/about-us/our-staff/
+Misspelled Words: 
+a,s,w,ixd,html,css,js,WordPress,JWorks,Caseflow,AngularJS,doesn,t,Andriod,Henri,Chiang,
+
+
+URL: http://stgconsulting.com/careers/
+Misspelled Words: 
+a,s,w,ixd,html,css,js,WordPress,JWorks,Caseflow,AngularJS,doesn,t,Andriod,Henri,Chiang,
+
+
+URL: http://stgconsulting.com/careers/why-work-for-us/
+Misspelled Words: 
+a,s,w,ixd,html,css,js,WordPress,JWorks,Caseflow,AngularJS,doesn,t,Andriod,Henri,Chiang,
+
+
+URL: http://stgconsulting.com/referral/
+Misspelled Words: 
+a,s,w,ixd,html,css,js,WordPress,JWorks,Caseflow,AngularJS,doesn,t,Andriod,Henri,Chiang,
+
+
+URL: http://stgconsulting.com/newsletter/
+Misspelled Words: 
+a,s,w,ixd,html,css,js,WordPress,JWorks,Caseflow,AngularJS,doesn,t,Andriod,Henri,Chiang,
+
+
+URL: http://stgconsulting.com/our-story/
+Misspelled Words: 
+a,s,w,ixd,html,css,js,WordPress,JWorks,Caseflow,AngularJS,doesn,t,Andriod,Henri,Chiang,Soderberg,ve,
+
+
+URL: http://stgconsulting.com/about-us/management/
+Misspelled Words: 
+a,s,w,ixd,html,css,js,WordPress,JWorks,Caseflow,AngularJS,doesn,t,Andriod,Henri,Chiang,Soderberg,ve,
+
+
+URL: http://stgconsulting.com/blog/
+Misspelled Words: 
+a,s,w,ixd,html,css,js,WordPress,JWorks,Caseflow,AngularJS,doesn,t,Andriod,Henri,Chiang,Soderberg,ve,Sagers,RootsTech,IxD,Heiner,
+
+
+URL: http://stgconsulting.com/contact/
+Misspelled Words: 
+a,s,w,ixd,html,css,js,WordPress,JWorks,Caseflow,AngularJS,doesn,t,Andriod,Henri,Chiang,Soderberg,ve,Sagers,RootsTech,IxD,Heiner,info@stgconsulting.com,
+
+
+URL: http://stgconsulting.com//our-philosophy/
+Misspelled Words: 
+a,s,w,ixd,html,css,js,WordPress,JWorks,Caseflow,AngularJS,doesn,t,Andriod,Henri,Chiang,Soderberg,ve,Sagers,RootsTech,IxD,Heiner,info@stgconsulting.com,
+
+
+URL: http://stgconsulting.com/?team=jessica-lemon
+Misspelled Words: 
+a,s,w,ixd,html,css,js,WordPress,JWorks,Caseflow,AngularJS,doesn,t,Andriod,Henri,Chiang,Soderberg,ve,Sagers,RootsTech,IxD,Heiner,info@stgconsulting.com,jessica,

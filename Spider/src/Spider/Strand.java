@@ -4,14 +4,14 @@ public class Strand {
 	private final String source;
 	private final String destination;
 	
-	public Strand(String s, String d)
+	Strand(String s, String d)
 	{
 		source = s;
 		destination = d;
 	}
 
-	public String getSource() { return source; }
-	public String getDestination() { return destination; }
+	String getSource() { return source; }
+	String getDestination() { return destination; }
 	
 	@Override
 	public String toString() {
