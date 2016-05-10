@@ -186,11 +186,11 @@ public class Spider {
 					visitedURLs.add(visit.getDestination());
 
 					// Extract all web page text and save to file
-					System.out.println("EXTRACTING TEXT...");
 					GetPageText extract = new GetPageText();
 					RunSpellCheck checker = new RunSpellCheck();
 					extract.extractText(visit.getDestination(),textFile);
-					extract.removeRegexText(textFile);
+
+					// Run spell check on output text
 					try {
 						checker.runSpellCheck(visit.getDestination(),textFile,spellFile);
 					} catch (IOException e) {
@@ -220,7 +220,6 @@ public class Spider {
 				}
 			}
 		}
-
 		driver.close();
 		driver.quit();
 

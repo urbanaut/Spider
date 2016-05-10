@@ -88,7 +88,7 @@ public class RunSpellCheck implements SpellCheckListener {
                 try (Writer out = new BufferedWriter(new OutputStreamWriter(
                         new FileOutputStream(outFile), "UTF-8"))) {
                     System.out.println("URL: " + url);
-                    out.write("\n\nURL: " + url + "\n");
+                    out.write("\nURL: " + url + "\n");
                     out.write("Misspelled Words: \n");
                     for (Object misspelledWord : listOfMisspelledWords) {
                         out.write(misspelledWord + ",");

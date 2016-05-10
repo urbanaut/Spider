@@ -34,6 +34,7 @@ public class GetPageText {
 
             Elements paragraphs = doc.select("p");
 
+            System.out.println("EXTRACTING TEXT...");
             File file = new File(textFile);
             if(!file.exists())
             {
@@ -42,7 +43,6 @@ public class GetPageText {
                 try (Writer out = new BufferedWriter(new OutputStreamWriter(
                         new FileOutputStream(textFile), "UTF-8")))
                 {
-                    System.out.println("URL: " + url);
                     out.write("\nURL: " + url + "\n");
                     for (Element p : paragraphs) {
                         out.write(p.text() + " ");
@@ -54,7 +54,6 @@ public class GetPageText {
                 BufferedWriter bw = null;
                 try
                 {
-                    // APPEND MODE SET HERE
                     bw = new BufferedWriter(new FileWriter(textFile, true));
                     bw.newLine();
                     bw.write("\nURL: " + url + "\n");
@@ -72,7 +71,7 @@ public class GetPageText {
                     if (bw != null) try {
                         bw.close();
                     } catch (IOException ioe2) {
-                        // just ignore it
+                        // ignore
                     }
                 }
             }
@@ -86,14 +85,12 @@ public class GetPageText {
 
     public void removeRegexText(String textFile) throws IOException {
         String regex = "«(.*?)@STGUtah";
-        Pattern p = Pattern.compile(regex);
-        Matcher m = p.matcher(textFile);
 
         String content;
-
         content = new String(Files.readAllBytes(Paths.get(textFile)));
         content = content.replaceAll(regex,"");
 
+        System.out.println("REMOVING TEXT...");
         try (Writer out = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(textFile), "UTF-8")))
         {
