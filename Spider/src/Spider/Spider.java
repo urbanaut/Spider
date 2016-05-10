@@ -37,8 +37,8 @@ public class Spider {
 	private FileWriter writer;
 	private final Date date = new Date() ;
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
-	private final String textFile = "C:\\Users\\bill.witt\\Desktop\\spiderOutput\\output_" + dateFormat.format(date) + ".txt";
-	private final String spellFile = "C:\\Users\\bill.witt\\Desktop\\spiderOutput\\spelling_" + dateFormat.format(date) + ".txt";
+	private final String textFile = "src\\resources\\extract_" + dateFormat.format(date) + ".txt";
+	private final String spellFile = "src\\resources\\spelling_" + dateFormat.format(date) + ".txt";
 
 	
 	private Spider()
@@ -134,7 +134,7 @@ public class Spider {
 		Queue<Strand> toVisitURLs = new LinkedBlockingQueue<Strand>();
 		HashSet<String> visitedURLs = new HashSet<>();
 
-		System.setProperty("webdriver.chrome.driver", "src\\resources\\32bit\\chrome\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "src\\resources\\binaries\\32bit\\chrome\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		//WebDriver driver = new FirefoxDriver();
 		
