@@ -40,7 +40,7 @@ public class RunSpellCheck implements SpellCheckListener {
 
     private void createDictionary()
     {
-        String DICTIONARY_FILE = "src\\resources\\dictionary\\IncludedWords.txt";
+        String DICTIONARY_FILE = "src\\resources\\dictionaries\\mainDict.txt";
         File dict = new File(DICTIONARY_FILE);
         try
         {

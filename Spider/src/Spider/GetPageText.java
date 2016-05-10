@@ -83,7 +83,7 @@ public class GetPageText {
         removeRegexText(textFile);
     }
 
-    public void removeRegexText(String textFile) throws IOException {
+    private void removeRegexText(String textFile) throws IOException {
         String regex = "«(.*?)@STGUtah";
 
         String content;
