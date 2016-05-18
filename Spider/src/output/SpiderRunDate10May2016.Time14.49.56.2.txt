@@ -1,9 +1,0 @@
-Link did not lead to where expected.
-Current URL: https://na17.salesforce.com/ link was https://na17.salesforce.com source was 
-Link did not lead to where expected.
-Current URL: https://www.salesforce.com/form/signup/freetrial-sales.jsp?d=70130000000Enus&internal=true link was https://www.salesforce.com/form/trial/freetrial.jsp?d=70130000000Enus source was https://na17.salesforce.com/
-Non-whitelisted URL was linked: Source: https://na17.salesforce.com/secur/forgotpassword.jsp?locale=us Destination: http://salesforce.vidyard.com/watch/MxeeKTO3x5oMx4jNVWWX4w
-Link did not lead to where expected.
-Current URL: http://www.salesforce.com/assets/pdf/misc/salesforce_MSA.pdf link was https://www.salesforce.com/company/msa.jsp source was https://www.salesforce.com/form/signup/freetrial-sales.jsp?d=70130000000Enus&internal=true
-Non-whitelisted URL was linked: Source: https://www.salesforce.com/form/signup/freetrial-sales.jsp?d=70130000000Enus&internal=true Destination: https://privacy.truste.com/privacy-seal/salesforce-com,-inc-/validation?rid=89c5f057-7f71-4e69-9b74-43994ce03f69
-Non-whitelisted URL was linked: Source: https://www.salesforce.com/form/signup/freetrial-sales.jsp?d=70130000000Enus&internal=true Destination: http://maps.google.com/maps?q=One%20Market,%20Suite%20300,%20San%20Francisco,%20CA%2094105

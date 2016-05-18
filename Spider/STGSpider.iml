@@ -72,5 +72,8 @@
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-firefox-driver:2.49.1" level="project" />
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.9.1" level="project" />
     <orderEntry type="library" name="Maven: com.tupilabs:jazzy:0.6" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars.bower:dynatable:0.3.1" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars.bower:jquery:3.0.0-beta1" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
   </component>
 </module>

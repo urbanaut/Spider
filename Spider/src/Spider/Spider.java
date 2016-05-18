@@ -35,11 +35,11 @@ public class Spider {
 	private final HashSet<String> ignoreURLs;      // List of URLs that should be ignored
 	
 	private FileWriter writer;
-	private final Date date = new Date() ;
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
-	private final String textFile = "src\\output\\extract_" + dateFormat.format(date) + ".txt";
-	private final String spellFile = "src\\output\\spelling_" + dateFormat.format(date) + ".txt";
-
+	private final String date = GetDateTime.currentDateTime();
+	private final String textFile = "src\\output\\extract_" + date + ".txt";
+	private final String spellFile = "src\\output\\spelling_" + date + ".txt";
+	private final String jsonFile = "src\\output\\json_" + date + ".txt";
+	private final String logFile = "src\\output\\spiderRun_" + date + ".txt";
 	
 	private Spider()
 	{
@@ -193,7 +193,7 @@ public class Spider {
 
 					// Run spell check on output text
 					try {
-						checker.runSpellCheck(visit.getDestination(),textFile,spellFile);
+						checker.runSpellCheck(visit.getDestination(),textFile,spellFile,jsonFile);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -317,26 +317,13 @@ public class Spider {
 	{
 		try
 		{
-			writer = new FileWriter(getFileName(), true);
+			writer = new FileWriter(logFile, true);
 		}
 		catch (IOException e)
 		{
 			System.out.println("Failed to open file");
 			e.printStackTrace();
 		}		
-	}
-
-	/**
-	 * Create the date/time tag for log file name
-	 *
-	 * @return log text file
-     */
-	private String getFileName()
-	{
-		LocalDateTime date = LocalDateTime.now();
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("'Date'ddMMMyyyy.'Time'H.m.s.S");	
-		
-		return "src\\output\\SpiderRun" + date.format(format) + ".txt";
 	}
 
 	/**

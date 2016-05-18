@@ -83,7 +83,7 @@ public class GetPageText {
         content = new String(Files.readAllBytes(Paths.get(textFile)));
         content = content.replaceAll(footer,"");
 
-        System.out.println("REMOVING TEXT...");
+        System.out.println("Removing footer...");
         try (Writer out = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(textFile), "UTF-8")))
         {

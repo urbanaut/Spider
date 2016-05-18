@@ -2,11 +2,9 @@ package Spider;
 
 import com.swabunga.spell.SpellChecker;
 import com.swabunga.spell.TeXWordFinder;
-import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import com.swabunga.spell.event.SpellCheckEvent;
 import com.swabunga.spell.event.SpellCheckListener;
-import com.swabunga.spell.tokenizer.AbstractWordTokenizer;
 import com.swabunga.spell.tokenizer.StringWordTokenizer;
 import org.testng.annotations.Test;
 
@@ -18,26 +16,26 @@ import java.util.ArrayList;
 
 public class RunSpellCheck implements SpellCheckListener {
 
-    private static String readFile(String path) throws IOException
-    {
-        byte[] encoded = Files.readAllBytes(Paths.get(path));
-        return new String(encoded);
-    }
-
     private SpellChecker spellChecker;
     private ArrayList listOfMisspelledWords;
 
     @Test
-    public void runSpellCheck(String url, String text, String outFile) throws Exception
+    public void runSpellCheck(String url, String text, String spellFile, String jsonFile) throws Exception
     {
         createDictionary();
         spellChecker.addSpellCheckListener(this);
 
-        // run the test on imported output file
+        // Run the test on imported output file
         String TEXT_FILE = readFile(text);
         StringWordTokenizer texTok = new StringWordTokenizer(TEXT_FILE, new TeXWordFinder());
         populateListOfMisspelledWords(texTok);
-        printWordsInMisspelledList(url, outFile);
+        printWordsInMisspelledList(url, spellFile, jsonFile);
+    }
+
+    private static String readFile(String path) throws IOException
+    {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded);
     }
 
     private void createDictionary() throws Exception
@@ -61,19 +59,23 @@ public class RunSpellCheck implements SpellCheckListener {
         }
     }
 
+    private void writeToJson(String url, String jsonOutput) throws Exception {
+        CreateJsonFile.writeJsonFile(url, listOfMisspelledWords, jsonOutput);
+    }
+
     private void populateListOfMisspelledWords(StringWordTokenizer texTok)
     {
         listOfMisspelledWords = new ArrayList();
         spellChecker.checkSpelling(texTok);
     }
 
-    private void printWordsInMisspelledList(String url, String outFile)
-    {
+    private void printWordsInMisspelledList(String url, String spellFile, String jsonFile) throws Exception {
         for (Object misspelledWord : listOfMisspelledWords)
         {
             System.out.println("listOfMisspelledWords: " + misspelledWord);
         }
-        saveToFile(url, outFile);
+        saveToFile(url, spellFile);
+        writeToJson(url, jsonFile);
     }
 
     public void spellingError(SpellCheckEvent event)
@@ -82,7 +84,7 @@ public class RunSpellCheck implements SpellCheckListener {
         listOfMisspelledWords.add(event.getInvalidWord());
     }
 
-    private void saveToFile(String url, String outFile) {
+    private void saveToFile(String url, String outFile) throws Exception {
         try
         {
             File file = new File(outFile);
