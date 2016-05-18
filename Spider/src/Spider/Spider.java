@@ -135,7 +135,7 @@ public class Spider {
 		Queue<Strand> toVisitURLs = new LinkedBlockingQueue<Strand>();
 		HashSet<String> visitedURLs = new HashSet<>();
 
-		System.setProperty("webdriver.chrome.driver", "src\\resources\\binaries\\32bit\\chrome\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "src\\resources\\binaries\\chrome\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		//WebDriver driver = new FirefoxDriver();
 		

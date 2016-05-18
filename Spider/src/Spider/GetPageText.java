@@ -2,7 +2,6 @@ package Spider;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Entities;
 import org.jsoup.select.Elements;
 
@@ -27,47 +26,7 @@ public class GetPageText {
 
             Elements paragraphs = doc.select("p");
 
-            System.out.println("EXTRACTING TEXT...");
-            File file = new File(textFile);
-            if(!file.exists())
-            {
-                for(Element p : paragraphs)
-                    System.out.println(p.text()+ " ");
-                try (Writer out = new BufferedWriter(new OutputStreamWriter(
-                        new FileOutputStream(textFile), "UTF-8")))
-                {
-                    out.write("\nURL: " + url + "\n");
-                    for (Element p : paragraphs) {
-                        out.write(p.text() + " ");
-                    }
-                    out.close();
-                }
-            } else
-            {
-                BufferedWriter bw = null;
-                try
-                {
-                    bw = new BufferedWriter(new FileWriter(textFile, true));
-                    bw.newLine();
-                    bw.write("\nURL: " + url + "\n");
-                    for (Element p : paragraphs) {
-                        bw.write(p.text() + " ");
-                    }
-                    bw.newLine();
-                    bw.flush();
-                    bw.close();
-                } catch (IOException ioe)
-                {
-                    ioe.printStackTrace();
-                } finally
-                {
-                    if (bw != null) try {
-                        bw.close();
-                    } catch (IOException ioe2) {
-                        // ignore
-                    }
-                }
-            }
+            OutputFileWriter.writeExtractionToNewFile(url, textFile, paragraphs);
         }
         catch (IOException ex)
         {

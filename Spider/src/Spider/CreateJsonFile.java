@@ -20,7 +20,7 @@ class CreateJsonFile {
         for (Object misspelledWord : wordlist) {
             list.add(misspelledWord);
         }
-        url = url.replace("//","");
+        //url = url.replace("\\","");
         obj.put("Name", url);
         obj.put("Misspelled Words:", list);
 

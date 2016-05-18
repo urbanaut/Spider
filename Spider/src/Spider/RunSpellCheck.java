@@ -87,47 +87,7 @@ public class RunSpellCheck implements SpellCheckListener {
     private void saveToFile(String url, String outFile) throws Exception {
         try
         {
-            File file = new File(outFile);
-            if(!file.exists())
-            {
-                try (Writer out = new BufferedWriter(new OutputStreamWriter(
-                        new FileOutputStream(outFile), "UTF-8"))) {
-                    System.out.println("URL: " + url);
-                    out.write("\nURL: " + url + "\n");
-                    out.write("Misspelled Words: \n");
-                    for (Object misspelledWord : listOfMisspelledWords) {
-                        out.write(misspelledWord + ",");
-                    }
-                    out.close();
-                }
-            } else
-            {
-                BufferedWriter bw = null;
-                try
-                {
-                    // APPEND MODE SET HERE
-                    bw = new BufferedWriter(new FileWriter(outFile, true));
-                    bw.newLine();
-                    bw.write("\nURL: " + url + "\n");
-                    bw.write("Misspelled Words: \n");
-                    for (Object misspelledWord : listOfMisspelledWords) {
-                        bw.write(misspelledWord + ",");
-                    }
-                    bw.newLine();
-                    bw.flush();
-                    bw.close();
-                } catch (IOException ioe)
-                {
-                    ioe.printStackTrace();
-                } finally
-                {
-                    if (bw != null) try {
-                        bw.close();
-                    } catch (IOException ioe2) {
-                        // just ignore it
-                    }
-                }
-            }
+            OutputFileWriter.writeSpellingToNewFile(url, outFile, listOfMisspelledWords);
         }
         catch (IOException ex)
         {
