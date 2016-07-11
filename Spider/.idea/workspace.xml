@@ -6,19 +6,8 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../CodeChallenges/.idea/vcs.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../CodeChallenges/pom.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../CodeChallenges/src/main/java/util/TestBase.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Spider/GsonBase.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_3_1.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Spider/Spider.class" afterPath="$PROJECT_DIR$/target/classes/Spider/Spider.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/bill_witt.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/bill_witt.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/STGSpider.iml" afterPath="$PROJECT_DIR$/STGSpider.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Spider/CreateJsonFile.java" afterPath="$PROJECT_DIR$/src/Spider/CreateJsonFile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Spider/Spider.java" afterPath="$PROJECT_DIR$/src/Spider/Spider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Spider/Strand.java" afterPath="$PROJECT_DIR$/src/Spider/Strand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Tests/STGSiteTest.java" afterPath="$PROJECT_DIR$/src/Tests/STGSiteTest.java" />
     </list>
     <ignored path="STGSpider.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -123,7 +112,7 @@
         <entry file="file://$PROJECT_DIR$/src/Spider/CreateGsonFile.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="391">
-              <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#448#456#0" expanded="true" />
@@ -834,7 +823,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33110368" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33110368" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -866,7 +855,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added JSON class, minor changes for implementing new class" />
     <MESSAGE value="Added OutputFileWriter class to help with writing to text files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added OutputFileWriter class to help with writing to text files" />
+    <MESSAGE value="Added new JSON to GSON interpreter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new JSON to GSON interpreter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1217,7 +1207,7 @@
     <entry file="file://$PROJECT_DIR$/src/Spider/CreateGsonFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
-          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#448#456#0" expanded="true" />
