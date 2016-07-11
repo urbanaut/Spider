@@ -1,15 +1,12 @@
 package Tests;
 
-import org.testng.*;
-import org.testng.annotations.*;
-
 import Spider.Spider;
+import org.testng.annotations.Test;
 
 public class STGSiteTest {
 	
 	@Test
-	public void STGSite() throws Exception
-	{
+	public void STGSite() throws Exception {
 		String startingUrl = "http://www.stgconsulting.com";
 		Spider spider = new Spider(startingUrl);
 		
@@ -26,8 +23,7 @@ public class STGSiteTest {
 	}
 	
 	@Test
-	public void InvalidSite() throws Exception
-	{
+	public void InvalidSite() throws Exception {
 		Spider spider = new Spider("http://www.assdfsdfsdfdsdf.com/");
 		
 		spider.addSiteURL("http://www.assdfsdfsdfdsdf.com/");

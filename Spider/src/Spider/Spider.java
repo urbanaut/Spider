@@ -11,10 +11,6 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.InvalidParameterException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Queue;
@@ -38,11 +34,13 @@ public class Spider {
 	private final String date = GetDateTime.currentDateTime();
 	private final String textFile = "src\\output\\extract_" + date + ".txt";
 	private final String spellFile = "src\\output\\spelling_" + date + ".txt";
-	private final String jsonFile = "src\\output\\json_" + date + ".txt";
+	private final String jsonFile = "src\\output\\json_" + date + ".json";
 	private final String logFile = "src\\output\\spiderRun_" + date + ".txt";
-	
-	private Spider()
-	{
+
+	/**
+	 * Constructor
+	 */
+	private Spider() {
 		whitelistedURLs = new HashSet<>();
 		siteURLs = new HashSet<>();
 		ignoreURLs = new HashSet<>();
@@ -54,8 +52,7 @@ public class Spider {
 	 * 
 	 * @param startingURL A URL where the spider should start
 	 */
-	public Spider(String startingURL)
-	{
+	public Spider(String startingURL) {
 		this();
 		
 		if (startingURL == null || startingURL.isEmpty())
@@ -64,31 +61,44 @@ public class Spider {
 		startURL = startingURL;
 	}
 
-	// Ensures that writer is closed
+	/**
+	 * Ensures that the writer instance is closed
+	 *
+	 * @throws Throwable
+     */
 	@Override
 	protected void finalize() throws Throwable {
-		try
-		{
+		try {
 			CloseFile();
-		} catch (Throwable t)
-		{
+		} catch (Throwable t) {
 			throw t;
 		} finally {
 			super.finalize();
 		}
 	}
-	
+
+	/**
+	 * Open file for writing
+	 */
+	private void SetupFile() {
+		try {
+			writer = new FileWriter(logFile, true);
+		}
+		catch (IOException e) {
+			System.out.println("Failed to open file");
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Add a URL that is 'safe' for the spider to visit
 	 * Any site visited that isn't in the whitelist will cause an error to be generated
 	 * 
 	 * @param whiteListURL URL to add
 	 */
-	public void addWhiteListURL(String whiteListURL)
-	{
+	public void addWhiteListURL(String whiteListURL) {
 		if (whiteListURL == null || whiteListURL.isEmpty())
 			throw new InvalidParameterException("Whitelist URL must not be null or empty");
-
 		whitelistedURLs.add(whiteListURL);
 	}
 	
@@ -97,11 +107,9 @@ public class Spider {
 	 * 
 	 * @param siteURL URL to be added
 	 */
-	public void addSiteURL(String siteURL)
-	{
+	public void addSiteURL(String siteURL) {
 		if (siteURL == null || siteURL.isEmpty())
 			throw new InvalidParameterException("Site URL must not be null or empty");
-		
 		siteURLs.add(siteURL);
 		whitelistedURLs.add(siteURL);
 	}
@@ -111,11 +119,9 @@ public class Spider {
 	 * 
 	 * @param ignoreURL URL to be skipped
 	 */
-	public void addIgnoreURL(String ignoreURL)
-	{
+	public void addIgnoreURL(String ignoreURL) {
 		if (ignoreURL == null || ignoreURL.isEmpty())
 			throw new InvalidParameterException("Ignore URL must not be null or empty");
-		
 		ignoreURLs.add(ignoreURL);
 	}
 	
@@ -124,8 +130,8 @@ public class Spider {
 	 *
 	 * @return A String containing all of the errors found.
 	 */
-	public String walkSite() throws Exception
-	{
+	public String walkSite() throws Exception {
+
 		// Verify there isn't a problem with the starting URL
 		if (startURL == null || startURL.isEmpty())
 			return "Starting URL is null or empty.";
@@ -141,26 +147,21 @@ public class Spider {
 		
 		toVisitURLs.add(new Strand ("", startURL));
 		
-		while (!toVisitURLs.isEmpty())
-		{
+		while (!toVisitURLs.isEmpty()) {
 			Strand visit = toVisitURLs.poll();
 			System.out.println("Spider is now considering visiting:" + visit);
 			
 			// Check if we've visited this URL already
 			if (visitedURLs.contains(visit.getDestination()))
-			{
 				System.out.println("Spider already visited that.");
-			}
-			else
-			{
+			else {
+
 				// Haven't visited it, is it a site URL that we have to actually visit?
-				if (hashSetPartialMatch(siteURLs, visit.getDestination()))
-				{
+				if (hashSetPartialMatch(siteURLs, visit.getDestination())) {
+
 					// Verify the link works 
 					if (checkLinkBroken(visit.getDestination()))
-					{
 						errors = reportErrors("Tried to visit broken link: " + visit + "\n", errors);
-					}
 					
 					System.out.println("Spider is now visiting: " + visit);
 					driver.get(visit.getDestination());
@@ -179,8 +180,7 @@ public class Spider {
 					scanPage(driver, toVisitURLs, "img", "src");
 					
 					// Verify we got redirected to the right place
-					if (!driver.getCurrentUrl().equals(visit.getDestination()))
-					{
+					if (!driver.getCurrentUrl().equals(visit.getDestination())) {
 						errors = reportErrors("Link did not lead to where expected.\n" +
 					              "Current URL: " + driver.getCurrentUrl() + " link was " + visit.getDestination() + " source was " + visit.getSource() + "\n", errors);
 					}
@@ -198,24 +198,18 @@ public class Spider {
 						e.printStackTrace();
 					}
 				}
-				else
-				{
+				else {
 					// Make sure the link is still valid.
-					if (checkLinkBroken(visit.getDestination()))
-					{
+					if (checkLinkBroken(visit.getDestination())) {
 						System.out.println("DEBUG: Broken link found.");
 						errors = reportErrors("Broken link found: " + visit + "\n", errors);
 					}
 
 					// Is it in the whitelist?
 					if (hashSetPartialMatch(whitelistedURLs, visit.getDestination()))
-					{
 						System.out.println("Targeted url is whitelisted: " + visit);
-					}
 					else
-					{
 						errors = reportErrors("Non-whitelisted URL was linked: " + visit + "\n", errors);
-					}
 					
 					visitedURLs.add(visit.getDestination());
 				}
@@ -234,17 +228,14 @@ public class Spider {
 	 * @param toMatch
      * @return boolean
      */
-	private boolean hashSetPartialMatch(HashSet<String> set, String toMatch)
-	{
-		for(String str : set)
-		{
+	private boolean hashSetPartialMatch(HashSet<String> set, String toMatch) {
+		for(String str : set) {
 			System.out.println(toMatch + ".contains(" + str + ") == " + toMatch.contains(str));
 			System.out.println(str + ".contains(" + toMatch + ") == " + str.contains(toMatch));
 			System.out.println("Comparing |" + str + "|" + toMatch + "|");
 			if (toMatch.contains(str) || str.contains(toMatch))
 				return true;
 		}
-		
 		return false;
 	}
 
@@ -254,8 +245,7 @@ public class Spider {
 	 * @param url
 	 * @return boolean
      */
-	private boolean checkLinkBroken(String url)
-	{
+	private boolean checkLinkBroken(String url) {
 		HttpURLConnection connection;
 		
 		System.out.println("DEBUG: checkLinkBroken visiting " + url);
@@ -282,48 +272,27 @@ public class Spider {
 	 * @param tagName
 	 * @param targetAttribute
      */
-	private void scanPage(WebDriver driver, Queue<Strand> toVisitURLs, String tagName, String targetAttribute)
-	{
+	private void scanPage(WebDriver driver, Queue<Strand> toVisitURLs, String tagName, String targetAttribute) {
 		List<WebElement> links = driver.findElements(By.tagName(tagName));
 		
-		for (WebElement link : links)
-		{
-			try
-			{
+		for (WebElement link : links) {
+			try {
 				String target = link.getAttribute(targetAttribute);
 				if (target!=null)
 				System.out.println("Spider found possible link to visit: " + target);
 				
-				if (target != null && 
-					(target.startsWith("http://") || target.startsWith("https://")) &&
-					!hashSetPartialMatch(ignoreURLs, target)
-				   )
-				{
+				if (target != null
+						&& (target.startsWith("http://")
+						|| target.startsWith("https://"))
+						&& !hashSetPartialMatch(ignoreURLs, target)) {
 					System.out.println("Valid link found, adding to visit list: " + target);
 					toVisitURLs.add(new Strand(driver.getCurrentUrl(),  target));
 				}
 			}
-			catch (StaleElementReferenceException e)
-			{
+			catch (StaleElementReferenceException e) {
 				// Don't really care about Stale Elements
 			}
 		}
-	}
-
-	/**
-	 * Open file for writing
-	 */
-	private void SetupFile()
-	{
-		try
-		{
-			writer = new FileWriter(logFile, true);
-		}
-		catch (IOException e)
-		{
-			System.out.println("Failed to open file");
-			e.printStackTrace();
-		}		
 	}
 
 	/**
@@ -332,10 +301,8 @@ public class Spider {
 	 * @param existingErrors
      * @return errors
      */
-	private String reportErrors(String errorToReport, String existingErrors)
-	{
-		if (writer != null)
-		{
+	private String reportErrors(String errorToReport, String existingErrors) {
+		if (writer != null) {
 			try {
 				writer.write(errorToReport);
 				//writer.write(System.getProperty( "line.separator" ));
@@ -345,18 +312,15 @@ public class Spider {
 				e.printStackTrace();
 			}
 		}
-		
 		return existingErrors + errorToReport;
 	}
 
 	/**
 	 * Close the file writer
 	 */
-	private void CloseFile()
-	{
+	private void CloseFile() {
 		System.out.println("Commence closing");
-		if (writer != null)
-		{
+		if (writer != null) {
 			try {
 				writer.close();
 			} catch (IOException e) {

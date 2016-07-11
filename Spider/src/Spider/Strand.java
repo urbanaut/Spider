@@ -4,8 +4,7 @@ public class Strand {
 	private final String source;
 	private final String destination;
 	
-	Strand(String s, String d)
-	{
+	Strand(String s, String d) {
 		source = s;
 		destination = d;
 	}

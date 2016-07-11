@@ -20,17 +20,20 @@ class CreateJsonFile {
         for (Object misspelledWord : wordlist) {
             list.add(misspelledWord);
         }
-        //url = url.replace("\\","");
+        //url = url.replace("\\\\","");
         obj.put("Name", url);
         obj.put("Misspelled Words:", list);
+
+        String json = obj.toJSONString();
 
         File file = new File(outFile);
         if (!file.exists())
         {
             try (Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile), "UTF-8"))) {
-                out.write(obj.toJSONString());
+                out.write("[");
+                out.write(json.replace("}","},"));
                 System.out.println("Successfully Copied JSON Object to File...");
-                System.out.println("\nJSON Object: " + obj);
+                System.out.println("\nJSON Object: " + json);
             } catch (Exception e) {
                 System.out.println("Failed to create new output file");
             }
@@ -47,7 +50,7 @@ class CreateJsonFile {
                 if (bw != null) try {
                     bw.close();
                 } catch (IOException ioe2) {
-                    // just ignore it
+                    System.out.println("Failed writing to file.");
                 }
             }
         }
